@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>佛光永續島｜SDGs 17 × 綠色公益基金會(ipuregreen.org) × 佛光山 × 佛光永續學院 × 佛光大學</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -187,6 +187,9 @@
       transform: translateY(-2px) scale(1.06);
     }
   </style>
+  <meta name="description" content="探索佛光永續島：走訪 12 座 3D 永續島嶼，認識 SDGs 17 項目標，與綠色公益基金會、佛光山、佛光永續學院及佛光大學一起實踐永續。" />
+  <meta name="theme-color" content="#123f35" />
+  <link rel="stylesheet" href="responsive.css" />
 </head>
 <body class="relative select-none">
 
@@ -197,15 +200,15 @@
   <div id="labels-overlay" class="pointer-events-none absolute inset-0 overflow-hidden z-10"></div>
 
   <!-- ================= TOP HEADER: BRAND + IPUREGREEN.ORG REAL-TIME BENCHMARK + CONTROLS ================= -->
-  <header class="fixed top-2.5 left-2.5 right-2.5 z-30 flex flex-col gap-2 pointer-events-none">
+  <header id="app-header" class="fixed top-2.5 left-2.5 right-2.5 z-30 flex flex-col gap-2 pointer-events-none">
     
     <!-- Top Row -->
-    <div class="flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-2">
+    <div id="header-main" class="flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-2">
       
       <!-- Brand Identity & Live Sync Status -->
-      <div class="toy-panel rounded-2xl px-3.5 py-2 flex items-center justify-between gap-3 pointer-events-auto">
+      <div id="brand-panel" class="toy-panel rounded-2xl px-3.5 py-2 flex items-center justify-between gap-3 pointer-events-auto">
         <div class="flex items-center gap-2.5 min-w-0">
-          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-emerald-600 via-teal-600 to-amber-500 flex items-center justify-center text-white shadow-inner border-2 border-amber-200 shrink-0">
+          <div class="brand-mark w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-emerald-600 via-teal-600 to-amber-500 flex items-center justify-center text-white shadow-inner border-2 border-amber-200 shrink-0">
             <i class="fa-solid fa-earth-asia text-lg sm:text-xl"></i>
           </div>
           <div class="min-w-0">
@@ -227,12 +230,12 @@
         </div>
 
         <!-- Quick Action Buttons (SDGs Matrix & Story) -->
-        <div class="flex items-center gap-1.5 shrink-0">
-          <button onclick="openSdgModal()" class="toy-btn bg-gradient-to-r from-sky-600 to-emerald-600 text-white px-2.5 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 border-sky-800">
+        <div class="brand-actions flex items-center gap-1.5 shrink-0">
+          <button onclick="openSdgModal()" aria-label="SDGs 17 項目標總覽" class="toy-btn bg-gradient-to-r from-sky-600 to-emerald-600 text-white px-2.5 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 border-sky-800">
             <i class="fa-solid fa-bullseye"></i>
             <span>SDGs 17 總覽</span>
           </button>
-          <button onclick="openIntroModal()" class="toy-btn bg-amber-50 hover:bg-amber-100 text-amber-900 px-2.5 py-1.5 rounded-xl text-xs font-black flex items-center gap-1" title="島嶼導覽與數據來源說明">
+          <button onclick="openIntroModal()" aria-label="島嶼導覽與數據來源說明" class="toy-btn bg-amber-50 hover:bg-amber-100 text-amber-900 px-2.5 py-1.5 rounded-xl text-xs font-black flex items-center gap-1" title="島嶼導覽與數據來源說明">
             <i class="fa-solid fa-circle-info text-amber-600"></i>
             <span class="hidden sm:inline">島嶼白皮書</span>
           </button>
@@ -240,7 +243,7 @@
       </div>
 
       <!-- Pure Green Foundation (https://ipuregreen.org/) Real-Time Benchmark Ticker -->
-      <div class="toy-panel rounded-2xl px-3 py-1.5 flex items-center justify-between sm:justify-around gap-2.5 sm:gap-4 pointer-events-auto overflow-x-auto">
+      <div id="metrics-panel" class="toy-panel rounded-2xl px-3 py-1.5 flex items-center justify-between sm:justify-around gap-2.5 sm:gap-4 pointer-events-auto overflow-x-auto">
         
         <!-- Metric 1: T-Earth Forest Area & Trees -->
         <div class="flex items-center gap-2 shrink-0 cursor-pointer hover:opacity-85" onclick="selectIsland(2)" title="點擊前往 02 T-Earth 森眾復育島 (基準：ipuregreen.org)">
@@ -305,7 +308,7 @@
       </div>
 
       <!-- Search & Time of Day Controls -->
-      <div class="flex items-center gap-2 pointer-events-auto">
+      <div id="search-tools" class="flex items-center gap-2 pointer-events-auto">
         <!-- Keyword Search Input -->
         <div class="toy-panel-sm rounded-2xl px-3 py-1.5 flex items-center gap-2 flex-1 xl:w-48">
           <i class="fa-solid fa-magnifying-glass text-stone-400 text-xs"></i>
@@ -344,7 +347,7 @@
     </div>
 
     <!-- Second Row: Interactive UN SDGs 17 Sustainable Development Goals Quick Filter Bar -->
-    <div class="toy-panel-sm rounded-2xl px-2.5 py-1.5 flex items-center gap-1.5 pointer-events-auto overflow-x-auto">
+    <div id="sdg-ribbon" class="toy-panel-sm rounded-2xl px-2.5 py-1.5 flex items-center gap-1.5 pointer-events-auto overflow-x-auto">
       <div class="flex items-center gap-1.5 shrink-0 pr-1 border-r border-stone-300">
         <span class="px-2 py-0.5 rounded-lg bg-stone-800 text-white text-[10px] font-black tracking-wide">
           SDGs 17 永續目標
@@ -363,7 +366,7 @@
     
     <!-- Drawer Toggle & Overview Buttons -->
     <div class="flex items-center gap-1.5 mb-2 pointer-events-auto">
-      <button onclick="toggleLeftDrawer()" class="toy-btn bg-amber-50 text-stone-800 px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5">
+      <button data-directory-toggle aria-controls="left-drawer-body" aria-expanded="true" onclick="toggleLeftDrawer()" class="toy-btn bg-amber-50 text-stone-800 px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5">
         <i id="left-drawer-icon" class="fa-solid fa-bars-staggered text-emerald-700"></i>
         <span id="left-drawer-toggle-text">收合永續目錄</span>
       </button>
@@ -475,7 +478,7 @@
           </div>
           <h2 id="insp-title" class="text-base sm:text-lg font-black text-stone-800 leading-snug">T-Earth 森眾復育島</h2>
         </div>
-        <button onclick="closeInspector()" class="toy-btn bg-stone-100 hover:bg-stone-200 text-stone-700 w-8 h-8 rounded-xl flex items-center justify-center shrink-0" title="關閉面版">
+        <button onclick="closeInspector()" class="toy-btn bg-stone-100 hover:bg-stone-200 text-stone-700 w-8 h-8 rounded-xl flex items-center justify-center shrink-0" title="關閉面板" aria-label="關閉島嶼詳情">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
@@ -574,39 +577,41 @@
   </aside>
 
   <!-- ================= BOTTOM FLOATING ACTION DOCK ================= -->
-  <div class="fixed bottom-2.5 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-2xl toy-panel pointer-events-auto max-w-[96vw] overflow-x-auto">
+  <nav id="action-dock" aria-label="探索工具" class="fixed bottom-2.5 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-2xl toy-panel pointer-events-auto max-w-[96vw] overflow-x-auto">
     
+    <button class="mobile-action" data-directory-toggle aria-controls="left-drawer" aria-expanded="false" onclick="toggleLeftDrawer()"><i class="fa-solid fa-layer-group"></i><span>永續目錄</span></button>
     <!-- Easter Egg Wandering Character Finder -->
-    <button onclick="locateEasterEggMonk()" class="toy-btn toy-btn-gold px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 shrink-0">
+    <button onclick="locateEasterEggMonk()" aria-label="尋找三好小沙彌" class="toy-btn toy-btn-gold px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 shrink-0">
       <i class="fa-solid fa-wand-magic-sparkles"></i>
-      <span>彩蛋：三好小沙彌</span>
+      <span aria-hidden="true" class="easter-label">彩蛋：三好小沙彌</span>
       <span id="monk-current-badge" class="bg-amber-950/30 px-1.5 py-0.5 rounded text-[10px]">01島</span>
     </button>
 
     <!-- Custom Citizen Avatar Modal Trigger -->
-    <button onclick="openAvatarModal()" class="toy-btn toy-btn-primary px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 shrink-0">
+    <button onclick="openAvatarModal()" aria-label="製作我的永續島民" class="toy-btn toy-btn-primary px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 shrink-0">
       <i class="fa-solid fa-user-astronaut"></i>
       <span id="my-avatar-btn-label">捏製我的永續島民</span>
     </button>
 
     <!-- SDGs 17 Full Matrix Modal Trigger -->
-    <button onclick="openSdgModal()" class="toy-btn bg-white hover:bg-stone-100 text-stone-800 px-3 py-1.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shrink-0">
+    <button onclick="openSdgModal()" aria-label="SDGs 17 項目標總覽" class="toy-btn bg-white hover:bg-stone-100 text-stone-800 px-3 py-1.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shrink-0">
       <i class="fa-solid fa-table-cells-large text-sky-600"></i>
-      <span>SDGs 17 指標矩陣</span>
+      <span aria-hidden="true" class="matrix-label">SDGs 17 指標矩陣</span>
     </button>
 
     <!-- Toggle 3D Building Pins -->
-    <button onclick="cyclePinMode()" id="btn-pin-mode" class="toy-btn bg-white hover:bg-stone-100 text-stone-800 px-3 py-1.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shrink-0">
+    <button onclick="cyclePinMode()" id="btn-pin-mode" class="desktop-action toy-btn bg-white hover:bg-stone-100 text-stone-800 px-3 py-1.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shrink-0">
       <i class="fa-solid fa-location-dot text-rose-500"></i>
       <span id="pin-mode-label">據點標記：智慧顯示</span>
     </button>
 
     <!-- Auto Rotate Toggle -->
-    <button onclick="toggleAutoRotate()" id="btn-autorotate" class="toy-btn bg-white hover:bg-stone-100 text-stone-800 px-3 py-1.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shrink-0">
+    <button onclick="toggleAutoRotate()" id="btn-autorotate" class="desktop-action toy-btn bg-white hover:bg-stone-100 text-stone-800 px-3 py-1.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shrink-0">
       <i class="fa-solid fa-rotate text-emerald-600"></i>
       <span class="hidden sm:inline">環島巡禮</span>
     </button>
-  </div>
+    <button class="mobile-action" onclick="exploreIsland()"><i class="fa-solid fa-shuffle"></i><span>驚喜登島</span></button>
+  </nav>
 
   <!-- ================= UN SDGs 17 FULL MATRIX & IMPACT DASHBOARD MODAL ================= -->
   <div id="sdg-modal" class="fixed inset-0 z-50 bg-stone-900/55 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-5">
@@ -784,6 +789,19 @@
     </div>
   </div>
 
+  <section id="explore-note" aria-label="探索提示">
+    <div class="eyebrow">EXPLORE A GREENER TOMORROW</div>
+    <h2>一座島嶼，一份願心。<br>讓永續在此發生。</h2>
+    <p>12 座主題島嶼 · 17 項永續目標 · 無限共好可能</p>
+  </section>
+  <div id="map-tools" role="group" aria-label="地圖控制">
+    <button onclick="toggleMetrics()" id="metrics-toggle" title="公益數據" aria-label="展開或收合公益數據" aria-expanded="false"><i class="fa-solid fa-chart-simple"></i></button>
+    <button onclick="exploreIsland()" title="驚喜登島" aria-label="隨機探索一座永續島"><i class="fa-solid fa-shuffle"></i></button>
+    <button onclick="zoomMap(0.8)" title="放大" aria-label="放大地圖"><i class="fa-solid fa-plus"></i></button>
+    <button onclick="zoomMap(1.25)" title="縮小" aria-label="縮小地圖"><i class="fa-solid fa-minus"></i></button>
+    <button onclick="resetCameraOverview()" title="全島鳥瞰" aria-label="回到全島鳥瞰"><i class="fa-solid fa-compass"></i></button>
+  </div>
+  <p id="map-hint">拖曳旋轉 · 滾輪或雙指縮放 · 點選島名探索</p>
   <!-- Toast Notification -->
   <div id="toast-box" class="fixed top-28 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-[-10px]">
     <div class="toy-panel rounded-2xl px-4 py-2.5 flex items-center gap-2.5 text-xs font-black text-stone-800 shadow-lg">
@@ -1416,14 +1434,14 @@
     function initThreeJS() {
       const container = document.getElementById('canvas-container');
       scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xf4ebd9);
-      scene.fog = new THREE.FogExp2(0xf4ebd9, 0.0082);
+      scene.background = new THREE.Color(0xedf4ed);
+      scene.fog = new THREE.FogExp2(0xedf4ed, 0.0025);
 
-      camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.5, 350);
-      camera.position.set(0, 39, 54);
+      camera = new THREE.PerspectiveCamera(42, container.clientWidth / container.clientHeight, 0.5, 350);
+      camera.position.copy(overviewPosition());
 
       renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(container.clientWidth, container.clientHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -1435,8 +1453,8 @@
       controls.maxPolarAngle = Math.PI / 2.15;
       controls.minPolarAngle = 0.25;
       controls.minDistance = 11;
-      controls.maxDistance = 95;
-      controls.target.set(2, 0, 5);
+      controls.maxDistance = 180;
+      controls.target.set(7.5, 0, 6.5);
 
       raycaster = new THREE.Raycaster();
       mouse = new THREE.Vector2();
@@ -2011,8 +2029,9 @@
       filterBySDG(null);
       updateIslandSelectionVisuals();
       closeInspector();
-      camLookAtPos = new THREE.Vector3(2, 0, 5);
-      camTargetPos = new THREE.Vector3(0, 39, 54);
+      camLookAtPos = new THREE.Vector3(7.5, 0, 6.5);
+      camTargetPos = overviewPosition();
+      autoRotateEnabled = false;
     }
 
     const clock = new THREE.Clock();
@@ -2131,6 +2150,10 @@
       ISLANDS_DATA.forEach((isl) => {
         const el = document.createElement('div');
         el.className = 'island-label-3d';
+        el.setAttribute('role', 'button');
+        el.tabIndex = 0;
+        el.setAttribute('aria-label', `探索 ${isl.name}`);
+        el.onkeydown = (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectIsland(isl.id); } };
         el.onclick = (e) => {
           e.stopPropagation();
           selectIsland(isl.id);
@@ -2209,8 +2232,9 @@
       const v = worldVec.clone();
       v.project(camera);
       if (v.z > 1) return null;
-      const x = (v.x * 0.5 + 0.5) * window.innerWidth;
-      const y = (-(v.y * 0.5) + 0.5) * window.innerHeight;
+      const rect = renderer.domElement.getBoundingClientRect();
+      const x = rect.left + (v.x * 0.5 + 0.5) * rect.width;
+      const y = rect.top + (-(v.y * 0.5) + 0.5) * rect.height;
       return { x, y };
     }
 
@@ -2284,8 +2308,9 @@
     }
 
     function onCanvasClick(event) {
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      const rect = renderer.domElement.getBoundingClientRect();
+      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.setFromCamera(mouse, camera);
 
       const intersects = raycaster.intersectObjects(islandMeshes, false);
@@ -2298,9 +2323,14 @@
     }
 
     function onWindowResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const container = document.getElementById('canvas-container');
+      camera.aspect = container.clientWidth / container.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      if (!currentSelectedIslandId) {
+        camera.position.copy(overviewPosition());
+        controls.target.set(7.5, 0, 6.5);
+      }
     }
 
     /*************************************************************************
@@ -2416,7 +2446,7 @@
       if (currentSdgFilter) {
         const s = SDG_MAP[currentSdgFilter];
         ind.classList.remove('hidden');
-        ind.classList.add(' inline-flex');
+        ind.classList.add('inline-flex');
         ind.style.backgroundColor = s.color;
         indTxt.textContent = `${s.code} ${s.short}`;
         showToast(`已篩選【${s.code} ${s.name}】：點亮 ${s.islands.length} 座實踐島嶼`);
@@ -2467,7 +2497,9 @@
 
       filtered.forEach((isl) => {
         const isSelected = currentSelectedIslandId === isl.id;
-        const card = document.createElement('div');
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.setAttribute('aria-label', `探索 ${isl.name}`);
         card.className = `p-2.5 rounded-2xl border-2 cursor-pointer transition-all ${
           isSelected
             ? 'bg-amber-100/95 border-amber-500 shadow-sm'
@@ -2608,6 +2640,8 @@
     function openInspectorForIsland(island, highlightLandmarkIdx = null) {
       const inspector = document.getElementById('right-inspector');
       inspector.classList.remove('translate-x-[115%]');
+      if (window.matchMedia('(max-width: 1100px)').matches) setDirectoryOpen(false);
+      updatePanelState();
 
       document.getElementById('insp-code').textContent = island.code;
       document.getElementById('insp-code').style.backgroundColor = ORG_META[island.org].color;
@@ -2732,6 +2766,7 @@
 
     function closeInspector() {
       document.getElementById('right-inspector').classList.add('translate-x-[115%]');
+      updatePanelState();
     }
 
     function switchLeftTab(tab) {
@@ -2765,6 +2800,7 @@
     }
 
     function handleSearch(val) {
+      if (val) { closeInspector(); setDirectoryOpen(true); }
       const clearBtn = document.getElementById('clear-search-btn');
       clearBtn.classList.toggle('hidden', !val);
       switchLeftTab('islands');
@@ -2781,12 +2817,14 @@
       currentTimeOfDay = mode;
       const presets = {
         morning: { bg: 0xdff2f5, sun: 0xffe8b3, sunInt: 0.85, amb: 0xe6f4f1, ambInt: 0.7, winEmissive: 0.0, fireflies: 0.0 },
-        noon:    { bg: 0xf4ebd9, sun: 0xfff2d6, sunInt: 0.98, amb: 0xfff6e5, ambInt: 0.68, winEmissive: 0.0, fireflies: 0.0 },
+        noon:    { bg: 0xedf4ed, sun: 0xfff2d6, sunInt: 0.98, amb: 0xfff6e5, ambInt: 0.68, winEmissive: 0.0, fireflies: 0.0 },
         sunset:  { bg: 0xf6c29d, sun: 0xff7b47, sunInt: 0.92, amb: 0xdda790, ambInt: 0.62, winEmissive: 0.45, fireflies: 0.35 },
         night:   { bg: 0x1b263b, sun: 0x6c8ebf, sunInt: 0.38, amb: 0x283852, ambInt: 0.52, winEmissive: 1.15, fireflies: 0.95 }
       };
 
       const p = presets[mode];
+      document.body.dataset.time = mode;
+      document.body.style.backgroundColor = '#' + p.bg.toString(16).padStart(6, '0');
       scene.background.setHex(p.bg);
       scene.fog.color.setHex(p.bg);
       sunLight.color.setHex(p.sun);
@@ -2842,10 +2880,9 @@
     }
 
     function toggleLeftDrawer() {
-      const body = document.getElementById('left-drawer-body');
-      const txt = document.getElementById('left-drawer-toggle-text');
-      const isHidden = body.classList.toggle('hidden');
-      txt.textContent = isHidden ? '展開永續目錄' : '收合永續目錄';
+      const isOpen = !document.getElementById('left-drawer-body').classList.contains('hidden');
+      if (compactScreen.matches) closeInspector();
+      setDirectoryOpen(!isOpen);
     }
 
     function locateEasterEggMonk() {
@@ -3068,6 +3105,7 @@
      * 15. BOOTSTRAP ON WINDOW LOAD
      *************************************************************************/
     window.onload = function () {
+      initResponsiveInterface();
       initThreeJS();
       createHTMLOverlays();
       initSdgUI();
@@ -3094,5 +3132,6 @@
       animate();
     };
   </script>
+  <script src="interface.js"></script>
 </body>
 </html>
