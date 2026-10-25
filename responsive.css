@@ -20,7 +20,8 @@ button, input, select { min-height: 44px; }
 #brand-panel h1 { color: #fff; font-size: 22px; letter-spacing: .08em; }
 #brand-panel p { color: #c6dacf; font-size: 11px; margin-top: 4px; }
 #brand-panel h1 + span { background: #ffffff1c; color: #e0eab8; }
-#brand-panel .brand-mark { background: #ffffff12; border: 1px solid #ffffff36; width: 46px; height: 46px; border-radius: 50%; color: #e2c477; }
+#brand-panel .brand-mark { background: transparent; border: 0; box-shadow: none; width: 46px; height: 46px; }
+#brand-panel .brand-logo { display: block; width: 100%; height: 100%; object-fit: contain; }
 #brand-panel a[title] { display: none; }
 #brand-panel .brand-actions button { min-height: 40px; }
 #metrics-panel { grid-column: 1 / -1; grid-row: 2; padding: 9px 16px; border-radius: 14px; justify-content: flex-start; gap: 28px; }
